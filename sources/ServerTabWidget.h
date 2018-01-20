@@ -9,7 +9,7 @@ class ServerTabWidget : public QWidget
     Q_OBJECT
 public:
     explicit ServerTabWidget(const QString& common, bool autostart, QWidget *parent = nullptr);
-
+    ~ServerTabWidget();
 
 private Q_SLOTS:
     void onReadyReadStandardOutput();
