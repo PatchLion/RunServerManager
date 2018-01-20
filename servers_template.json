@@ -1,0 +1,6 @@
+{
+    "servers": [
+        {"name": "测试服务器", "common": "python test.py", "autostart": true},
+        {"name": "测试服务器2", "common": "python test2.py", "autostart": true}
+    ]
+}
