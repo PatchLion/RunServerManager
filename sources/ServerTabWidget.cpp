@@ -19,10 +19,18 @@ ServerTabWidget::ServerTabWidget(const QString& common, bool autostart, QWidget 
     mainLayout->addWidget(&m_logsWidget);
 }
 
+ServerTabWidget::~ServerTabWidget()
+{
+    if(m_process){
+        m_process.close();
+    }
+}
+
 void ServerTabWidget::onReadyReadStandardOutput()
 {
     const QString content = m_process.readAllStandardOutput();
     QListWidgetItem* item = new QListWidgetItem(content);
+    item->setForeground(Qt::blue);
 
     m_logsWidget.addItem(item);
 
