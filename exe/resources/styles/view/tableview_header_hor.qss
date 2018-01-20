@@ -1,7 +1,0 @@
-QHeaderView::section{  
-    background: #eaeaea;
-    color: #000000;  
-    padding-left: 4px;  
-    border: 1px solid #d8d8d8;
-    min-height: 30px;  
-} 

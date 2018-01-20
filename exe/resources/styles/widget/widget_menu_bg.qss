@@ -1,4 +1,0 @@
-QWidget#menuWidget
-{
-	border-bottom:1px solid #CCCCCC;
-}

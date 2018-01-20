@@ -1,6 +1,0 @@
-QWidget#companyManageWidget
-{
-	border-left:1px solid #CCCCCC;
-	border-top:1px solid #CCCCCC;
-    background-color: #FFFFFF;
-}

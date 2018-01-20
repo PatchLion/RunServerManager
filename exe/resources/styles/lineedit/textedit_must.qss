@@ -1,8 +1,0 @@
-QTextEdit
-{
-	/*font-family: "Arial"*/
-	color:#000000;
-	font-size:12px;	
-	border:1px solid #C75050;
-	border-radius: 2px;
-}
