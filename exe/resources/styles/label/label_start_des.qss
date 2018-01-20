@@ -1,0 +1,8 @@
+QLabel
+{
+    background-color: rgba(0,0,0,100);
+	/*font-family: "Arial";*/
+	color:#ffffff;
+	font-size:12px;
+	padding-right:12px;
+}

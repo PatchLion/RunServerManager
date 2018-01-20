@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/icons/contract_cannotedit_default.png</file>
+        <file>image/icons/contract_delete_default.png</file>
+        <file>image/icons/contract_edit_default.png</file>
+        <file>image/icons/contract_input_default.png</file>
+        <file>image/icons/login_default.png</file>
+        <file>image/icons/logout_default.png</file>
+        <file>image/start/button_24_0_0.png</file>
+        <file>image/start/button_24_0_1.png</file>
+        <file>image/start/button_24_0_2.png</file>
+        <file>image/start/exit_hover.png</file>
+        <file>image/start/exit_default.png</file>
+        <file>image/start/arrow_open.png</file>
+        <file>image/start/arrow_close.png</file>
+        <file>image/start/contract.png</file>
+        <file>image/start/arrowdown.png</file>
+        <file>html/Filing.html</file>
+        <file>html/Ledger.html</file>
+        <file>image/start/bg.jpg</file>
+    </qresource>
+</RCC>

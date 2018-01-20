@@ -1,0 +1,4 @@
+QWidget#topUserInfoWidget
+{
+    background-color: #398DEE;
+}

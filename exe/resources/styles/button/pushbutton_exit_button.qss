@@ -1,0 +1,15 @@
+QPushButton
+{
+	background-color: transparent;
+	border-image: url(:/image/start/exit_default.png);
+}
+
+QPushButton:hover
+{
+	border-image: url(:/image/start/exit_hover.png);
+}
+
+QPushButton:checked
+{
+	border-image: url(:/image/start/exit_hover.png);
+}

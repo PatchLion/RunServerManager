@@ -1,0 +1,21 @@
+QPushButton
+{
+	background-color: transparent;
+	border:0px;
+	color: #398dee;
+	/*font-family: "Arial";*/
+	font-size: 12px;
+}
+QPushButton:hover
+{
+	color: #84b3ea;
+}
+
+QPushButton:pressed
+{
+	color: #84b3ea;
+}
+QPushButton:disabled
+{
+	color: #000000;
+}

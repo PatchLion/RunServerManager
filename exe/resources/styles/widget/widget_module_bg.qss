@@ -1,0 +1,4 @@
+QWidget#moduleListWidget
+{
+    background-color: #FFFFFF;
+}

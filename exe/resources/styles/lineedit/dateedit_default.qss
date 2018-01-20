@@ -1,0 +1,8 @@
+QDateEdit
+{
+	/*font-family: "Arial"*/
+	color:#000000;
+	font-size:12px;	
+	border:1px solid gray;
+	border-radius: 2px;
+}

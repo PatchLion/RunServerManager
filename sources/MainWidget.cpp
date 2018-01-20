@@ -13,7 +13,7 @@ MainWidget::MainWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setWindowTitle(QString::fromLocal8Bit("服务器运行管理"));
+    setWindowTitle(QString::fromLocal8Bit("Server Run Manager"));
 
     ui->tabWidgetServers->clear();
 
