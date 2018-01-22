@@ -13,7 +13,9 @@ MainWidget::MainWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setWindowTitle(QString::fromLocal8Bit("Server Run Manager"));
+
+
+	setWindowTitle(QString::fromLocal8Bit("Server Run Manager v%1").arg(VERSION_STRING));
 
     ui->tabWidgetServers->clear();
 
@@ -23,6 +25,42 @@ MainWidget::MainWidget(QWidget *parent) :
 MainWidget::~MainWidget()
 {
     delete ui;
+}
+
+void MainWidget::on_pushButtonStartAll_clicked(bool checked)
+{
+	for (int i = 0; i < ui->tabWidgetServers->count(); i++){
+		ServerTabWidget* tab = tabWidgetAt(i);
+		if (tab){
+			tab->start();
+		}
+	}
+}
+
+void MainWidget::on_pushButtonStopAll_clicked(bool checked)
+{
+	for (int i = 0; i < ui->tabWidgetServers->count(); i++){
+		ServerTabWidget* tab = tabWidgetAt(i);
+		if (tab){
+			tab->stop();
+		}
+	}
+}
+
+void MainWidget::on_pushButtonStopCurrent_clicked(bool checked)
+{
+	ServerTabWidget* tab = tabWidgetAt(ui->tabWidgetServers->currentIndex());
+	if (tab){
+		tab->stop();
+	}
+}
+
+void MainWidget::on_pushButtonStartCurrent_clicked(bool checked)
+{
+	ServerTabWidget* tab = tabWidgetAt(ui->tabWidgetServers->currentIndex());
+	if (tab){
+		tab->start();
+	}
 }
 
 void MainWidget::readConfigFromLocal()
@@ -99,4 +137,9 @@ void MainWidget::initTabWithConfig(const MainWidget::Servers &ss)
         ServerTabWidget* newTabWidget = new ServerTabWidget(common, autostart);
         ui->tabWidgetServers->addTab(newTabWidget, name);
     }
+}
+
+ServerTabWidget* MainWidget::tabWidgetAt(int i)
+{
+	return dynamic_cast<ServerTabWidget*>(ui->tabWidgetServers->widget(i));
 }

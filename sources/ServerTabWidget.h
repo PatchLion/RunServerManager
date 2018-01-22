@@ -9,7 +9,14 @@ class ServerTabWidget : public QWidget
     Q_OBJECT
 public:
     explicit ServerTabWidget(const QString& common, bool autostart, QWidget *parent = nullptr);
+	~ServerTabWidget();
 
+public:
+	bool isRunning();
+
+	void start();
+
+	void stop();
 
 private Q_SLOTS:
     void onReadyReadStandardOutput();
@@ -19,6 +26,8 @@ private Q_SLOTS:
 private:
     void startCommon();
     void checkLineCount();
+
+	void pushLogMessage(const QString& content, bool errormsg);
 
 private:
     QString m_common;

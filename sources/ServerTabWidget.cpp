@@ -9,46 +9,71 @@ ServerTabWidget::ServerTabWidget(const QString& common, bool autostart, QWidget 
 
     m_common = common;
     if(autostart){
-        startCommon();
+		start();
     }
 
-    QHBoxLayout* mainLayout = new QHBoxLayout(this);
+	QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
 
     mainLayout->addWidget(&m_logsWidget);
 }
 
+ServerTabWidget::~ServerTabWidget()
+{
+	stop();
+}
+
+bool ServerTabWidget::isRunning()
+{
+	return m_process.isOpen();
+}
+
+void ServerTabWidget::start()
+{
+	if (!isRunning()){
+		startCommon();
+		pushLogMessage("Server started!!!", true);
+	}
+}
+
+void ServerTabWidget::stop()
+{
+	if (isRunning()){
+#ifdef Q_OS_WIN
+		//pushLogMessage(QString("taskkill /F /PID %1").arg(m_process.processId()).toLatin1().data(), false);
+		//system(QString("taskkill  /F /PID %1").arg(m_process.processId()).toLatin1().data());
+#endif
+		m_process.kill();
+		m_process.close();
+		m_process.waitForFinished();
+		pushLogMessage("Server stopped!!!", true);
+	}
+}
+
 void ServerTabWidget::onReadyReadStandardOutput()
 {
-    const QString content = m_process.readAllStandardOutput();
-    QListWidgetItem* item = new QListWidgetItem(content);
-
-    m_logsWidget.addItem(item);
-
-    checkLineCount();
+	const QString content = QString::fromLocal8Bit(m_process.readAllStandardOutput()).trimmed();
+	pushLogMessage(content, false);
 }
 
 void ServerTabWidget::onReadyReadStandardError()
 {
-    const QString content = m_process.readAllStandardError();
-    QListWidgetItem* item = new QListWidgetItem(content);
-    item->setForeground(Qt::red);
-
-    m_logsWidget.addItem(item);
-
-    checkLineCount();
+	const QString content = QString::fromLocal8Bit(m_process.readAllStandardError()).trimmed();
+	pushLogMessage(content, true);
 }
 
 void ServerTabWidget::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-    qDebug() << "Progress finished: " << exitCode << exitStatus;
+    //pushLogMessage("Progress finished: " +  exitCode, exitCode!=0);
 }
 
 void ServerTabWidget::startCommon()
 {
     if(!m_process.isOpen() && !m_common.isEmpty()){
         m_process.start(m_common, QProcess::ReadWrite);
+		qDebug() << "PID = " << m_process.processId() << m_process.pid();
+		pushLogMessage("PID = " + QString::number(m_process.processId()), true);
     }
 }
 
@@ -57,4 +82,23 @@ void ServerTabWidget::checkLineCount()
     if(m_logsWidget.count() > 2000){
         m_logsWidget.clear();
     }
+}
+
+void ServerTabWidget::pushLogMessage(const QString& content, bool errormsg)
+{
+	if (content.isEmpty())
+	{
+		return;
+	}
+
+	QListWidgetItem* item = new QListWidgetItem(content);
+	if (errormsg){
+		item->setForeground(Qt::red);
+	}
+
+	m_logsWidget.addItem(item);
+
+	m_logsWidget.scrollToBottom();
+
+	checkLineCount();
 }

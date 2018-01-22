@@ -1,0 +1,8 @@
+{
+    "servers": [
+        {"name": "图片服务器", "common": "python ../WebServer.py", "autostart": true},
+        {"name": "授权服务器", "common": "python ../LoginServer.py", "autostart": true},
+        {"name": "反防盗链服务器", "common": "python ../SafeUrlServer.py", "autostart": true},
+        {"name": "测试服务器", "common": "python ../TestServer.py", "autostart": true}
+    ]
+}
