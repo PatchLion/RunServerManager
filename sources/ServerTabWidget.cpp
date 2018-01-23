@@ -20,9 +20,23 @@ ServerTabWidget::ServerTabWidget(const QString& common, bool autostart, QWidget 
 }
 
 ServerTabWidget::~ServerTabWidget()
+<<<<<<< HEAD
 {
 	stop();
 }
+=======
+{
+    if(m_process){
+        m_process.close();
+    }
+}
+
+void ServerTabWidget::onReadyReadStandardOutput()
+{
+    const QString content = m_process.readAllStandardOutput();
+    QListWidgetItem* item = new QListWidgetItem(content);
+    item->setForeground(Qt::blue);
+>>>>>>> cb5ca479159dfe2ed887a85f07b0cafe91c2b89d
 
 bool ServerTabWidget::isRunning()
 {
